@@ -1,4 +1,7 @@
 import '../App.css'
+import {useState} from "react";
+import { FaPlus } from "react-icons/fa";
+import { FaFilter } from "react-icons/fa";
 
 const mocks = [
         {name: "Leche Entera", category: "Lácteos", estante: "02", marca: "Pascual", precio: "0.99€"},
@@ -8,31 +11,80 @@ const mocks = [
         {name: "Macarrones", category: "Despensa", estante: "04", marca: "Gallo", precio: "1.20€"},
         {name: "Atún Claro", category: "Conservas", estante: "05", marca: "Calvo", precio: "4.50€"}
 ]
+const filtros = [
+    {
+        name: "Categoria",
+        values: ["Lacteos", "Fruta", "Verduras"]
+    },
+    {
+        name: "Estante",
+        values: ["Estante1", "Estante2", "Estante3"]
+    },
+    {
+        name: "Marca",
+        values: ["Millac", "H&S", "Danone"]
+    },
+]
+
 function Productos() {
+    const [filterSelector, setFilterSelector] = useState(false)
+    const [selectedFilter, setselectedFilter] = useState(null)
     const items = mocks.map((item) => {
         return (
-            <button key={item.name} className="bg-gray-200 rounded-xl p-2 focus:ring-2" onClick={() => console.log(item.name)}>
-                <h2 className="text-xl font-bold mb-8">{item.name}</h2>
-                <p className="text-left"><span className="font-bold ">Categoria:</span> {item.category}</p>
-                <p className="text-left"><span className="font-bold ">Estante:</span> {item.estante}</p>
-                <p className="text-left"><span className="font-bold ">Marca:</span> {item.marca}</p>
-                <p className="text-left"><span className="font-bold ">Precio:</span> {item.precio}</p>
+            <button key={item.name} className="bg-gray-200 rounded-xl p-2 focus:ring-2 text-left" onClick={() => console.log(item.name)}>
+                <div className={"absolute bg-blue-500 w-full"}></div>
+                <h2 className="text-xl text-center font-bold mb-8">{item.name}</h2>
+                <p><span className="font-bold ">Categoria:</span> {item.category}</p>
+                <p><span className="font-bold ">Estante:</span> {item.estante}</p>
+                <p><span className="font-bold ">Marca:</span> {item.marca}</p>
+                <p><span className="font-bold ">Precio:</span> {item.precio}</p>
             </button>
         )
     })
     return (
-        <>
+        <div>
             <div className="flex flex-col items-center justify-center space-y-4 mt-20 w-80 mx-auto">
                 <h1 className="text-4xl">Productos</h1>
                 <div className="w-full bg-green-400 px-1 py-0.5"></div>
+                {filterSelector && (
+                    <div className="fixed bg-black/80 inset-0 flex items-center m-0 justify-center z-40" >
+                        <div className="bg-gray-200 w-70 h-100 mt-6 mx-auto rounded-2xl z-50">
+                            <div className={"flex justify-between mx-5"}>
+                                <p className="text-4xl text-center py-5">Filtros</p>
+                                <button className={"font-medium text-4xl"} onClick={() => setFilterSelector(false)}>X</button>
+                            </div>
+                            <ul className="grid text-2xl font-medium ml-4 mt-4 gap-y-4">
+                                {filtros.map((filtro) => {
+                                    return (
+                                        <div>
+                                            <li className="flex items-center gap-x-2" key={filtro.name} onClick={() => {
+                                                selectedFilter === filtro.name ? setselectedFilter(null) : setselectedFilter(filtro.name)
+                                            }}><FaPlus/>{filtro.name}</li>
+                                            {selectedFilter === filtro.name&&(
+                                                <div className="flex flex-wrap gap-x-2 gap-y-2">
+                                                    {filtro.values.map((value) => {
+                                                        return (
+                                                            <button className="bg-gray-300 p-1 rounded-md" key={value}>{value}</button>
+                                                        )
+                                                    })}
+                                                </div>
+                                            )}
+                                        </div>
+
+                                    )
+                                })}
+                            </ul>
+                        </div>
+                    </div>
+                )}
                 <div className="">
-                    <button className="px-2 bg-gray-200 rounded-xs mr-50">Filtros</button>
+                    <button className="flex items-center gap-x-2 font-medium text-lg px-3 py-2 bg-gray-200 rounded-xl" onClick={() => setFilterSelector(prev => !prev)}><FaFilter/>Filtros</button>
                     <section className="grid grid-cols-2 gap-2 mt-5">
                         {items}
                     </section>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 

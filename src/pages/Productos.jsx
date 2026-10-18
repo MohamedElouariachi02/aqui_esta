@@ -59,26 +59,22 @@ function Productos() {
                             <ul className="grid text-2xl font-medium ml-4 mt-4 gap-y-4">
                                 {filtros.map((filtro) => {
                                     return (
-                                        <div>
-                                            <li className="grid items-center gap-x-2" key={filtro.name} onClick={() => {
-                                                selectedFilter === filtro.name ? setselectedFilter(null) : setselectedFilter(filtro.name)
-                                            }}>
-                                                <div className="flex items-center gap-x-2">
-                                                    <FaPlus/>{filtro.name}
+                                        <li className="grid items-center gap-x-2" key={filtro.name} onClick={() => {
+                                            selectedFilter === filtro.name ? setselectedFilter(null) : setselectedFilter(filtro.name)
+                                        }}>
+                                            <div className="flex items-center gap-x-2">
+                                                <FaPlus/>{filtro.name}
+                                            </div>
+                                            {selectedFilter === filtro.name&&(
+                                                <div className="flex flex-wrap gap-2 mt-2">
+                                                    {filtro.values.map((value) => {
+                                                        return (
+                                                            <button className="bg-gray-300 p-1 rounded-md" key={value}>{value}</button>
+                                                        )
+                                                    })}
                                                 </div>
-                                                {selectedFilter === filtro.name&&(
-                                                    <div className="flex flex-wrap gap-2 mt-2">
-                                                        {filtro.values.map((value) => {
-                                                            return (
-                                                                <button className="bg-gray-300 p-1 rounded-md" key={value}>{value}</button>
-                                                            )
-                                                        })}
-                                                    </div>
-                                                )}
-                                            </li>
-
-                                        </div>
-
+                                            )}
+                                        </li>
                                     )
                                 })}
                             </ul>

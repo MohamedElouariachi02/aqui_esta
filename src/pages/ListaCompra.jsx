@@ -1,15 +1,87 @@
 import '../App.css'
+import {useState} from "react";
+import { FaEdit } from "react-icons/fa";
+import { MdDelete } from "react-icons/md";
 
+const items = [
+    {name: "Producto1"},
+    {name: "Producto2"},
+    {name: "Producto3"},
+    {name: "Producto4"},
+    {name: "Producto5"},
+    {name: "Producto6"},
+    {name: "Producto7"},
+    {name: "Producto8"},
+    {name: "Producto9"},
+];
+
+
+function addList(lista, item)
+{
+    if (item === "") return;
+    lista.push({name: item})
+}
 
 function ListaCompra() {
+    const [lista, setLista] = useState([])
+    const [crearLista, setCrearLista] = useState(false)
+    const [newItem, setNewItem] = useState("")
+
     return (
-        <>
-            <div className="flex flex-col items-center justify-center space-y-10 mt-20 w-80 mx-auto">
-                <h1 className="text-4xl">Lista de la compra</h1>
-                <button className="border px-2 py-1 font-bold text-white bg-green-400 rounded-2xl mr-50">+ Crear lista</button>
-                <div className="bg-black w-full p-1 h-48 mt-5"></div>
-            </div>
-        </>
+        <div className="flex flex-col items-center justify-center mt-20 w-80 mx-auto">
+            {crearLista && (
+                <div className="bg-gray-100 fixed inset-0 mt-40">
+                    <div className="flex flex-col justify-center items-center h-full">
+                        <input className="border rounded-full border-gray-400 w-75 h-10 pl-4"
+                               value={newItem}
+                               onChange={(e) => setNewItem(e.target.value)}/>
+                        <button className="bg-gray-300 p-2 rounded-xl top-20"
+                        onClick={() => {
+                            addList(lista, newItem);
+                            setNewItem("")
+                        }}>Enviar</button>
+                        <div className="flex flex-col justify-start w-60 mt-10 gap-y-4 overflow-auto" >
+                            {lista.map(item => (
+                                <label className="flex text-lg font-medium gap-x-2 items-center" key={item.name}>
+                                    <input type={"checkbox"} className="size-4"/>
+                                    {item.name}
+                                </label>
+                            ))}
+                        </div>
+                        <div className="flex justify-between w-75 text-white font-medium text-xl mt-30 mb-10">
+                            <button className="bg-red-500 p-2 rounded-xl" onClick={() => {
+                                setLista([]);
+                                setCrearLista(false)
+                            }}>Cancelar</button>
+                            <button className="bg-green-400 p-2 rounded-xl" onClick={() => setCrearLista(false)}>Hecho</button>
+                        </div>
+                    </div>
+                </div>
+            )}
+            <h1 className="text-4xl">Lista de la compra</h1>
+            {lista.length !== 0 && (
+                <div className="bg-gray-300 p-4 mt-6 rounded-xl">
+                    <div className="flex justify-end gap-x-4">
+                        <MdDelete className="size-7 cursor-pointer" onClick={() => setLista([])} />
+                        <FaEdit className="size-7 cursor-pointer"/>
+                    </div>
+                    <div className="flex flex-wrap justify-between gap-3 mt-4 text-lg font-medium mx-2">
+                        {lista.map((item) => {
+                            return (
+                                <label className=" flex gap-x-2 items-center" key={item.name}>
+                                    <input type={"checkbox"} className="size-4 accent-green-400 text-white"/>
+                                    {item.name}
+                                </label>
+                        )
+                        })}
+                    </div>
+                </div>
+            )}
+            <button
+                className={`border px-2 py-1 font-bold text-white bg-green-400 rounded-2xl mr-50 mt-15 ${lista.length ? "hidden" : "visible"}`}
+                onClick={() => setCrearLista(true)}>+ Crear lista</button>
+            <div className="bg-black w-full p-1 h-48 mt-10"></div>
+        </div>
     )
 }
 

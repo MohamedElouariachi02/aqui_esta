@@ -51,24 +51,32 @@ function Productos() {
                         <div className="bg-gray-200 w-70 h-100 mt-6 mx-auto rounded-2xl z-50">
                             <div className={"flex justify-between mx-5"}>
                                 <p className="text-4xl text-center py-5">Filtros</p>
-                                <button className={"font-medium text-4xl"} onClick={() => setFilterSelector(false)}>X</button>
+                                <button className={"font-medium text-4xl"} onClick={() => {
+                                    setFilterSelector(false);
+                                    setselectedFilter(null)
+                                }}>X</button>
                             </div>
                             <ul className="grid text-2xl font-medium ml-4 mt-4 gap-y-4">
                                 {filtros.map((filtro) => {
                                     return (
                                         <div>
-                                            <li className="flex items-center gap-x-2" key={filtro.name} onClick={() => {
+                                            <li className="grid items-center gap-x-2" key={filtro.name} onClick={() => {
                                                 selectedFilter === filtro.name ? setselectedFilter(null) : setselectedFilter(filtro.name)
-                                            }}><FaPlus/>{filtro.name}</li>
-                                            {selectedFilter === filtro.name&&(
-                                                <div className="flex flex-wrap gap-x-2 gap-y-2">
-                                                    {filtro.values.map((value) => {
-                                                        return (
-                                                            <button className="bg-gray-300 p-1 rounded-md" key={value}>{value}</button>
-                                                        )
-                                                    })}
+                                            }}>
+                                                <div className="flex items-center gap-x-2">
+                                                    <FaPlus/>{filtro.name}
                                                 </div>
-                                            )}
+                                                {selectedFilter === filtro.name&&(
+                                                    <div className="flex flex-wrap gap-2 mt-2">
+                                                        {filtro.values.map((value) => {
+                                                            return (
+                                                                <button className="bg-gray-300 p-1 rounded-md" key={value}>{value}</button>
+                                                            )
+                                                        })}
+                                                    </div>
+                                                )}
+                                            </li>
+
                                         </div>
 
                                     )

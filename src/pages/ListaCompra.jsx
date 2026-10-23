@@ -3,19 +3,6 @@ import {useState} from "react";
 import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 
-const items = [
-    {name: "Producto1"},
-    {name: "Producto2"},
-    {name: "Producto3"},
-    {name: "Producto4"},
-    {name: "Producto5"},
-    {name: "Producto6"},
-    {name: "Producto7"},
-    {name: "Producto8"},
-    {name: "Producto9"},
-];
-
-
 function addList(lista, item)
 {
     if (item === "") return;
@@ -32,18 +19,27 @@ function ListaCompra() {
             {crearLista && (
                 <div className="bg-gray-100 fixed inset-0 mt-40">
                     <div className="flex flex-col justify-center items-center h-full">
-                        <input className="border rounded-full border-gray-400 w-75 h-10 pl-4"
-                               value={newItem}
-                               onChange={(e) => setNewItem(e.target.value)}/>
-                        <button className="bg-gray-300 p-2 rounded-xl top-20"
-                        onClick={() => {
-                            addList(lista, newItem);
-                            setNewItem("")
-                        }}>Enviar</button>
+                        <div className="relative w-75 items-center flex">
+                            <button className="p-2 rounded-xl absolute right-2 font-bold text-2xl"
+                                    onClick={() => {
+                                        addList(lista, newItem);
+                                        setNewItem("")
+                                    }}>+</button>
+                            <input className="border rounded-full border-gray-400 w-full h-10 pl-4" onKeyDown={(e) => {
+                                if (e.key === "Enter") {
+                                    addList(lista, newItem)
+                                    setNewItem("")
+
+                                }
+                            }}
+                                   value={newItem}
+                                   onChange={(e) => setNewItem(e.target.value)}/>
+                        </div>
+
                         <div className="flex flex-col justify-start w-60 mt-10 gap-y-4 overflow-auto" >
                             {lista.map(item => (
                                 <label className="flex text-lg font-medium gap-x-2 items-center" key={item.name}>
-                                    <input type={"checkbox"} className="size-4"/>
+                                    <input type={"checkbox"} className="size-4 accent-green-400"/>
                                     {item.name}
                                 </label>
                             ))}
@@ -53,7 +49,10 @@ function ListaCompra() {
                                 setLista([]);
                                 setCrearLista(false)
                             }}>Cancelar</button>
-                            <button className="bg-green-400 p-2 rounded-xl" onClick={() => setCrearLista(false)}>Hecho</button>
+                            <button className="bg-green-400 p-2 rounded-xl" onClick={() => {
+                                setCrearLista(false);
+                                setNewItem("")
+                            }}>Hecho</button>
                         </div>
                     </div>
                 </div>

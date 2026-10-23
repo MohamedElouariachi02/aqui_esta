@@ -46,7 +46,6 @@ function ListaCompra() {
                         </div>
                         <div className="flex justify-between w-75 text-white font-medium text-xl mt-30 mb-10">
                             <button className="bg-red-500 p-2 rounded-xl" onClick={() => {
-                                setLista([]);
                                 setCrearLista(false)
                             }}>Cancelar</button>
                             <button className="bg-green-400 p-2 rounded-xl" onClick={() => {
@@ -62,7 +61,7 @@ function ListaCompra() {
                 <div className="bg-gray-300 p-4 mt-6 rounded-xl">
                     <div className="flex justify-end gap-x-4">
                         <MdDelete className="size-7 cursor-pointer" onClick={() => setLista([])} />
-                        <FaEdit className="size-7 cursor-pointer"/>
+                        <FaEdit className="size-7 cursor-pointer" onClick={() => setCrearLista(true)}/>
                     </div>
                     <div className="flex flex-wrap justify-between gap-3 mt-4 text-lg font-medium mx-2">
                         {lista.map((item) => {

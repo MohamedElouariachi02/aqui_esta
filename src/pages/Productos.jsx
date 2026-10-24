@@ -2,6 +2,7 @@ import '../App.css'
 import {useState} from "react";
 import { FaPlus } from "react-icons/fa";
 import { FaFilter } from "react-icons/fa";
+import { FaMinus } from "react-icons/fa";
 
 const mocks = [
         {name: "Leche Entera", category: "Lácteos", estante: "02", marca: "Pascual", precio: "0.99€"},
@@ -45,7 +46,8 @@ function Filters({setFilterSelector, setselectedFilter, selectedFilter})
                                 selectedFilter === filtro.name ? setselectedFilter(null) : setselectedFilter(filtro.name)
                             }}>
                                 <div className="flex items-center gap-x-2">
-                                    <FaPlus/>{filtro.name}
+                                    {selectedFilter === filtro.name ?  <FaMinus/>: <FaPlus/>}
+                                    {filtro.name}
                                 </div>
                                 {selectedFilter === filtro.name&&(
                                     <div className="flex flex-wrap gap-2 mt-2">

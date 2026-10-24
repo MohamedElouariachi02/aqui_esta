@@ -15,7 +15,7 @@ function CrearLista({lista, newItem, setNewItem, setCrearLista})
         <div className="bg-gray-100 fixed inset-0 mt-40">
             <div className="flex flex-col justify-center items-center h-full">
                 <div className="relative w-75 items-center flex">
-                    <button className="p-2 rounded-xl absolute right-2 font-bold text-2xl"
+                    <button className="p-2 rounded-xl absolute right-1 font-bold text-2xl"
                             onClick={() => {
                                 addList(lista, newItem);
                                 setNewItem("")

@@ -1,17 +1,10 @@
 import '../App.css'
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import { FaPlus } from "react-icons/fa";
 import { FaFilter } from "react-icons/fa";
 import { FaMinus } from "react-icons/fa";
 
-const mocks = [
-        {name: "Leche Entera", category: "Lácteos", estante: "02", marca: "Pascual", precio: "0.99€"},
-        {name: "Detergente Líquido", category: "Limpieza", estante: "15", marca: "Ariel", precio: "8.50€"},
-        {name: "Galletas María", category: "Desayuno", estante: "07", marca: "Fontaneda", precio: "2.15€"},
-        {name: "Gel de Ducha", category: "Baño", estante: "13", marca: "Sanex", precio: "2.95€"},
-        {name: "Macarrones", category: "Despensa", estante: "04", marca: "Gallo", precio: "1.20€"},
-        {name: "Atún Claro", category: "Conservas", estante: "05", marca: "Calvo", precio: "4.50€"}
-]
+const API = "http://localhost:3001/api";
 const filtros = [
     {
         name: "Categoria",
@@ -26,6 +19,15 @@ const filtros = [
         values: ["Millac", "H&S", "Danone"]
     },
 ]
+
+async function cargaProductos() {
+    const res = await fetch(`${API}/productos`);
+    if (!res.ok) {
+        throw new Error(`Error al obtener los productos: ${res.status}` );
+    }
+    return res.json()
+
+}
 
 function Filters({setFilterSelector, setselectedFilter, selectedFilter})
 {
@@ -72,10 +74,10 @@ function Items({items})
         <section className="grid grid-cols-2 gap-2 mt-5">
             {items.map((item) => {
                 return (
-                    <button key={item.name} className="bg-gray-200 rounded-xl p-2 focus:ring-2 text-left" onClick={() => console.log(item.name)}>
+                    <button key={item.id} className="bg-gray-200 rounded-xl p-2 focus:ring-2 text-left" onClick={() => console.log(item.name)}>
                         <div className={"absolute bg-blue-500 w-full"}></div>
-                        <h2 className="text-xl text-center font-bold mb-8">{item.name}</h2>
-                        <p><span className="font-bold ">Categoria:</span> {item.category}</p>
+                        <h2 className="text-xl text-center font-bold mb-8">{item.nombre}</h2>
+                        <p><span className="font-bold ">Categoria:</span> {item.categoria}</p>
                         <p><span className="font-bold ">Estante:</span> {item.estante}</p>
                         <p><span className="font-bold ">Marca:</span> {item.marca}</p>
                         <p><span className="font-bold ">Precio:</span> {item.precio}</p>
@@ -90,6 +92,27 @@ function Items({items})
 function Productos() {
     const [filterSelector, setFilterSelector] = useState(false)
     const [selectedFilter, setselectedFilter] = useState(null)
+    const [productosDatabase, setProductosDatabase] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    useEffect(() =>  {
+        async function cargar() {
+            try {
+                setLoading(true)
+                const productos =  await cargaProductos();
+                setProductosDatabase(productos);
+            }
+            catch (error) {
+                setError(error.message);
+            }
+            finally {
+                setLoading(false);
+            }
+        }
+
+        cargar();
+
+    }, [])
     return (
         <div>
             <div className="flex flex-col items-center justify-center space-y-4 mt-20 w-80 mx-auto">
@@ -100,8 +123,9 @@ function Productos() {
                 )}
                 <div className="">
                     <button className="flex items-center gap-x-2 font-medium text-lg px-3 py-2 bg-gray-200 rounded-xl" onClick={() => setFilterSelector(prev => !prev)}><FaFilter/>Filtros</button>
-                    <Items items={mocks}/>
-
+                    {!loading && !error && (
+                        <Items items={productosDatabase}/>
+                    )}
                 </div>
             </div>
         </div>

@@ -74,7 +74,7 @@ function Items({items})
         <section className="grid grid-cols-2 gap-2 mt-5">
             {items.map((item) => {
                 return (
-                    <button key={item.id} className="bg-gray-200 rounded-xl p-2 focus:ring-2 text-left" onClick={() => console.log(item.name)}>
+                    <button key={item.id} className="bg-gray-200 rounded-xl p-2 focus:ring-2 text-left" onClick={() => console.log(item.nombre)}>
                         <div className={"absolute bg-blue-500 w-full"}></div>
                         <h2 className="text-xl text-center font-bold mb-8">{item.nombre}</h2>
                         <p><span className="font-bold ">Categoria:</span> {item.categoria}</p>

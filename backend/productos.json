@@ -1,0 +1,35 @@
+
+{
+  "productos": [
+    {"nombre": "Leche Entera", "categoria": "Lácteos", "estante": "02", "marca": "Pascual", "precio": "0.99"},
+    {"nombre": "Detergente Líquido", "categoria": "Limpieza", "estante": "15", "marca": "Ariel", "precio": "8.50"},
+    {"nombre": "Galletas María", "categoria": "Desayuno", "estante": "07", "marca": "Fontaneda", "precio": "2.15"},
+    {"nombre": "Gel de Ducha", "categoria": "Baño", "estante": "13", "marca": "Sanex", "precio": "2.95"},
+    {"nombre": "Macarrones", "categoria": "Despensa", "estante": "04", "marca": "Gallo", "precio": "1.20"},
+    {"nombre": "Atún Claro", "categoria": "Conservas", "estante": "05", "marca": "Calvo", "precio": "4.50"},
+    {"nombre": "Yogur Natural", "categoria": "Lácteos", "estante": "02", "marca": "Danone", "precio": "1.85"},
+    {"nombre": "Pan de Molde", "categoria": "Panadería", "estante": "01", "marca": "Bimbo", "precio": "2.10"},
+    {"nombre": "Café Molido", "categoria": "Desayuno", "estante": "08", "marca": "Marcilla", "precio": "4.75"},
+    {"nombre": "Aceite de Oliva", "categoria": "Despensa", "estante": "03", "marca": "Carbonell", "precio": "7.90"},
+    {"nombre": "Arroz Largo", "categoria": "Despensa", "estante": "04", "marca": "SOS", "precio": "2.35"},
+    {"nombre": "Tomate Frito", "categoria": "Despensa", "estante": "05", "marca": "Orlando", "precio": "1.65"},
+    {"nombre": "Papel Higiénico", "categoria": "Higiene", "estante": "14", "marca": "Scottex", "precio": "4.99"},
+    {"nombre": "Champú Reparador", "categoria": "Baño", "estante": "13", "marca": "Pantene", "precio": "3.85"},
+    {"nombre": "Pasta Dental", "categoria": "Higiene", "estante": "14", "marca": "Colgate", "precio": "2.49"},
+    {"nombre": "Lavavajillas", "categoria": "Limpieza", "estante": "15", "marca": "Fairy", "precio": "3.20"},
+    {"nombre": "Suavizante", "categoria": "Limpieza", "estante": "15", "marca": "Mimosín", "precio": "3.75"},
+    {"nombre": "Agua Mineral", "categoria": "Bebidas", "estante": "10", "marca": "Bezoya", "precio": "1.50"},
+    {"nombre": "Refresco de Cola", "categoria": "Bebidas", "estante": "11", "marca": "Coca-Cola", "precio": "2.25"},
+    {"nombre": "Zumo de Naranja", "categoria": "Bebidas", "estante": "11", "marca": "Don Simón", "precio": "2.10"},
+    {"nombre": "Chocolate con Leche", "categoria": "Dulces", "estante": "09", "marca": "Milka", "precio": "2.35"},
+    {"nombre": "Patatas Fritas", "categoria": "Snacks", "estante": "12", "marca": "Lay's", "precio": "2.20"},
+    {"nombre": "Aceitunas Verdes", "categoria": "Conservas", "estante": "06", "marca": "La Española", "precio": "2.75"},
+    {"nombre": "Maíz Dulce", "categoria": "Conservas", "estante": "06", "marca": "Bonduelle", "precio": "1.80"},
+    {"nombre": "Harina de Trigo", "categoria": "Despensa", "estante": "03", "marca": "Gallo", "precio": "1.45"},
+    {"nombre": "Azúcar Blanco", "categoria": "Despensa", "estante": "03", "marca": "Azucarera", "precio": "1.30"},
+    {"nombre": "Huevos Tamaño M", "categoria": "Frescos", "estante": "02", "marca": "Coren", "precio": "2.89"},
+    {"nombre": "Queso Gouda", "categoria": "Lácteos", "estante": "02", "marca": "García Baquero", "precio": "4.95"},
+    {"nombre": "Pizza Cuatro Quesos", "categoria": "Congelados", "estante": "16", "marca": "Dr. Oetker", "precio": "4.50"},
+    {"nombre": "Helado de Vainilla", "categoria": "Congelados", "estante": "16", "marca": "Frigo", "precio": "3.99"}
+  ]
+}

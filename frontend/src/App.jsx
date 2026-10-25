@@ -1,5 +1,5 @@
 import {Routes, Route} from "react-router";
-import LocalizarProducto from './pages/LocalizarProducto';
+import LocalizarProducto from './pages/LocalizarProducto.jsx';
 import ListaCompra from './pages/ListaCompra.jsx'
 import Productos from './pages/Productos.jsx';
 import Layout from './components/Layout.jsx';
